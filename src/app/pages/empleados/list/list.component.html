@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+        <span class="h3">Lista de empleados</span>
+        <h5 *ngIf="empleados.length == 0">No hay datos a mostrar</h5>
+        <table style="margin-top: 30px;" *ngIf="empleados.length > 0" class="table mt-4">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Email</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Salario</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-primary" *ngFor="let empleado of empleados">
+              <th scope="row">{{empleado.nombre}}</th>
+                  <td>{{empleado.apellido}}</td>
+                  <td>{{empleado.email}}</td>
+                  <td>{{empleado.descripcion}}</td>
+                  <td>{{empleado.salario | currency}}</td>
+                  <td>
+                    <button type="button"[routerLink]="['/edit',empleado.id]" class="btn btn-warning" style="margin-right: 5px;">Editar</button>
+                    <button type="button" [routerLink]="['/info',empleado.id]" class="btn btn-info" style="margin-right: 5px;">Informacion</button>
+                    <button type="button" (click)="eliminarEmpleado(empleado.id)" class="btn btn-danger">Eliminar</button>
+                  </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
